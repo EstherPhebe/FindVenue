@@ -12,7 +12,7 @@ const vendorSchema = new Schema({
     required: true,
     unique: true,
   },
-  phonenumber: {
+  phone: {
     type: Number,
     required: true,
   },

@@ -46,6 +46,13 @@ const venueSchema = new Schema({
       "<450",
       "<500",
     ],
+    default: "<15",
+  },
+  features: [String],
+  priceperhour: {
+    type: Number,
+    min: 0,
+    required: true,
   },
   vendor: { type: Schema.Types.ObjectId, ref: "Vendor" },
   reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
