@@ -54,6 +54,10 @@ const venueSchema = new Schema({
     min: 0,
     required: true,
   },
+  isOpen: {
+    type: Boolean,
+    default: false,
+  },
   vendor: { type: Schema.Types.ObjectId, ref: "Vendor" },
   reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   events: [{ type: Schema.Types.ObjectId, ref: "Event" }],

@@ -11,6 +11,14 @@ const eventSchema = new Schema({
     required: true,
     min: Date.now,
   },
+  duration: {
+    type: Number,
+    required: true,
+  },
+  cost: {
+    type: Number,
+    required: true,
+  },
   user: { type: Schema.Types.ObjectId, ref: "User" },
   venue: { type: Schema.Types.ObjectId, ref: "Venue" },
 });

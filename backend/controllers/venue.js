@@ -69,6 +69,7 @@ const updateVenue = async (req, res) => {
 
       await venueDetails.save();
       const checkVenue = vendor.venues.some((v) => v._id.equals(id));
+      //   const checkVenue = vendor.venues.filter(v => v._id.equals(id))
 
       if (!checkVenue) {
         vendor.venues.push(venueDetails);
@@ -126,6 +127,29 @@ const deleteVenue = async (req, res) => {
   }
 };
 
+//Get all details about a venue including reviews for the user view
+const getVenue = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const venueDetails = await Venue.findById(id)
+      .populate(
+        { path: "vendor", select: "name" }
+        // { path: "review", select: "rating" },
+      )
+      .exec();
+
+    res.status(200).json({ success: true, venueDetails });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 //vendor/:vendorId/venue
 
-module.exports = { createVenue, getvendorsVenues, updateVenue, deleteVenue };
+module.exports = {
+  createVenue,
+  getvendorsVenues,
+  updateVenue,
+  deleteVenue,
+  getVenue,
+};
